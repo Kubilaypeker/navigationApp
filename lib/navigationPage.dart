@@ -21,7 +21,7 @@ class navigationPage extends StatefulWidget {
 }
 
 const kgoogleApiKey = "AIzaSyDFWger-QR2d_TxGy-nHAMjtuwUabmdzEo";
-final homeScaffoldKey = GlobalKey<ScaffoldState>();
+//final homeScaffoldKey = GlobalKey<ScaffoldState>();
 
 
 
@@ -48,14 +48,14 @@ class navigationPageState extends State<navigationPage> {
 
   @override
   void initState() {
-    getUserLocation(homeScaffoldKey.currentState);
+    getUserLocation();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: homeScaffoldKey,
+
      appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: true,
@@ -91,9 +91,11 @@ class navigationPageState extends State<navigationPage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.white,
         backgroundColor: const Color(0xff282828),
         items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: IconButton(icon: const Icon(Icons.restaurant,), onPressed: () => dpuRestaurants()), label: ""),
+          BottomNavigationBarItem(icon: IconButton(icon: const Icon(Icons.restaurant,), onPressed: () => dpuRestaurants()), label: ""),
           BottomNavigationBarItem(icon: IconButton(icon: const Icon(Icons.directions_bus,), onPressed: () => dpuBusStations()), label: ""),
           BottomNavigationBarItem(icon: IconButton(icon: const Icon(Icons.apartment,), onPressed: () => dpuBuildings()), label: ""),
       ],
@@ -114,13 +116,13 @@ class navigationPageState extends State<navigationPage> {
       components: [Component(Component.country,"tr")]
     );
 
-    displayPrediction(p!, homeScaffoldKey.currentState);
+    displayPrediction(p!);
   }
   void onError(PlacesAutocompleteResponse response) {
-    homeScaffoldKey.currentState!.showSnackBar(SnackBar(content:Text(response.errorMessage!)));
+
   }
 
-  Future<void> displayPrediction(Prediction p, ScaffoldState? currentState) async {
+  Future<void> displayPrediction(Prediction p) async {
 
     GoogleMapsPlaces places = GoogleMapsPlaces(
       apiKey: kgoogleApiKey,
@@ -132,7 +134,7 @@ class navigationPageState extends State<navigationPage> {
     final lng = detail.result.geometry!.location.lng;
 
     markersList.clear();
-    getUserLocation(currentState);
+    getUserLocation();
     markersList.add(Marker(markerId: const MarkerId("1"), position: LatLng(lat, lng), infoWindow: InfoWindow( title: detail.result.name)));
     getNavigate();
     setState(() {
@@ -140,7 +142,7 @@ class navigationPageState extends State<navigationPage> {
 
     mapController.animateCamera(CameraUpdate.newLatLngZoom(LatLng(lat, lng), 17.0));
   }
-  Future<void> getUserLocation(ScaffoldState? currentState) async {
+  Future<void> getUserLocation() async {
     LocationPermission permission;
     permission = await Geolocator.requestPermission();
 
@@ -192,7 +194,7 @@ class navigationPageState extends State<navigationPage> {
 
     setState(() {
       markersList.clear();
-      getUserLocation(homeScaffoldKey.currentState);
+      getUserLocation();
       markersList.addAll(restaurantMarkers);
       mapController.animateCamera(CameraUpdate.newLatLngZoom(LatLng(39.480029,29.899298), 17.0));
     });
@@ -219,7 +221,7 @@ class navigationPageState extends State<navigationPage> {
 
     setState(() {
       markersList.clear();
-      getUserLocation(homeScaffoldKey.currentState);
+      getUserLocation();
       markersList.addAll(busStationMarkers);
       mapController.animateCamera(CameraUpdate.newLatLngZoom(LatLng(39.480029,29.899298), 17.0));
     });

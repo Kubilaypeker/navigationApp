@@ -51,13 +51,14 @@ class loginPageState extends State<loginPage> {
               child: TextFormField(
                 validator: (value) {
                   if(value == null || value.isEmpty || !value.contains('@dpu.edu') || !value.contains('.')){
-                    return 'Invalid Email';
+                    return 'Geçersiz E-mail';
                   }
                   return null;
                 },
     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
     controller: email,
     decoration: const InputDecoration(
+      contentPadding: EdgeInsets.only(left: 10),
       border: InputBorder.none,
       hintText: "\tÖğrenci E-maili",
       hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black54)
@@ -78,6 +79,7 @@ class loginPageState extends State<loginPage> {
                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
                 controller: password,
                 decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 10),
                     border: InputBorder.none,
                     hintText: "\tŞifre",
                     hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black54)

@@ -16,14 +16,10 @@ class navigationPage extends StatefulWidget {
   const navigationPage({Key? key}) : super(key: key);
 
   @override
-
   State<navigationPage> createState() => navigationPageState();
 }
 
 const kgoogleApiKey = "AIzaSyDFWger-QR2d_TxGy-nHAMjtuwUabmdzEo";
-//final homeScaffoldKey = GlobalKey<ScaffoldState>();
-
-
 
 class navigationPageState extends State<navigationPage> {
 

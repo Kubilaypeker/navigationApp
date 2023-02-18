@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "1071395195057",
-    "project_id": "dpunavigation",
-    "storage_bucket": "dpunavigation.appspot.com"
+    "project_number": "331156202029",
+    "project_id": "dpu-navigasyon",
+    "storage_bucket": "dpu-navigasyon.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1071395195057:android:13ef15b9301a2f4b2d7a90",
+        "mobilesdk_app_id": "1:331156202029:android:9df42d89290cf3f4b1cea4",
         "android_client_info": {
           "package_name": "com.example.dpunavigation"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1071395195057-ba07hlrshjru857g0guisckm66c2ja67.apps.googleusercontent.com",
+          "client_id": "331156202029-696bul8n4gcgbg72clhk49dph0bjpcdc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.dpunavigation",
-            "certificate_hash": "91068cb8555335dc05b4216430f87e2ac31541e4"
+            "certificate_hash": "be33b5b2636f177ba095b2c2080ad2dd06b5a5d3"
           }
         },
         {
-          "client_id": "1071395195057-o41qph4q72vbemr9qv09k4hsrvbmlp0j.apps.googleusercontent.com",
+          "client_id": "331156202029-792hf1heisdkv5e4nroobk8d4vqbo44j.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAgANzn_n2eroQkMOOkm9f4GmQgyiE8UH0"
+          "current_key": "AIzaSyC_zgnDTC6mBBtHKiWtFDFZmcwh7dYy-GU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1071395195057-o41qph4q72vbemr9qv09k4hsrvbmlp0j.apps.googleusercontent.com",
+              "client_id": "331156202029-792hf1heisdkv5e4nroobk8d4vqbo44j.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

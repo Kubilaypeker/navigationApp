@@ -10,9 +10,10 @@ import 'navigationPage.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+    name: "dpu-navigasyon",
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -24,12 +25,13 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<AuthenticationService>(
-          create: (_) => AuthenticationService(FirebaseAuth.instance),
+          create: (_) => AuthenticationService(),
         ),
         StreamProvider(create: (context) => context.read<AuthenticationService>().authStateChanges, initialData: null,
         ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: AuthenticationWrapper(),
       ),
     );
@@ -42,8 +44,8 @@ class AuthenticationWrapper extends StatelessWidget { // to check user signed in
     final firebaseUser = context.watch<User?>();
 
     if (firebaseUser != null) {
-      return navigationPage();
+      return const navigationPage();
     }
-    return loginPage();
+    return const loginPage();
   }
 }

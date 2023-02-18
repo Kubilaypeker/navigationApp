@@ -1,7 +1,9 @@
+import 'package:dpunavigation/signUpScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:provider/provider.dart';
+import 'authenticationService.dart';
 import 'main.dart';
 
 
@@ -14,8 +16,8 @@ class loginPage extends StatefulWidget {
 
 class loginPageState extends State<loginPage> {
 
-  final TextEditingController email = TextEditingController();
-  final TextEditingController password = TextEditingController();
+   final TextEditingController userEmail = TextEditingController();
+   final TextEditingController userPassword = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,18 +51,12 @@ class loginPageState extends State<loginPage> {
                 color: Colors.white
               ),
               child: TextFormField(
-                validator: (value) {
-                  if(value == null || value.isEmpty || !value.contains('@dpu.edu') || !value.contains('.')){
-                    return 'Geçersiz E-mail';
-                  }
-                  return null;
-                },
     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
-    controller: email,
+    controller: userEmail,
     decoration: const InputDecoration(
-      contentPadding: EdgeInsets.only(left: 10),
+      contentPadding: EdgeInsets.only(left: 15),
       border: InputBorder.none,
-      hintText: "\tÖğrenci E-maili",
+      hintText: "Öğrenci E-maili",
       hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black54)
                 ),
               ),
@@ -77,11 +73,11 @@ class loginPageState extends State<loginPage> {
               child: TextFormField(
                 obscureText: true,
                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
-                controller: password,
+                controller: userPassword,
                 decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.only(left: 10),
+                  contentPadding: EdgeInsets.only(left: 15),
                     border: InputBorder.none,
-                    hintText: "\tŞifre",
+                    hintText: "Şifre",
                     hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black54)
                 ),
               ),
@@ -94,17 +90,26 @@ class loginPageState extends State<loginPage> {
               backgroundColor: MaterialStateProperty.all<Color>(const Color(0xff0E469B))
             ),
               onPressed: () {
-                FirebaseAuth.instance.createUserWithEmailAndPassword(email: email.text, password: email.text).then((value) {print("Hesabınız Oluşturuldu!");
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AuthenticationWrapper()));
-                }).onError((error, stackTrace) {
-                  print("Error ${error.toString()}"
-                  );
-                }
+                context.read<AuthenticationService>().signIn(
+                  email: userEmail.text,
+                  password: userPassword.text,
                 );
               },
               child: const Text("GİRİŞ YAP",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
+              ),
+            ),
+          ),
+          Container(
+            child: TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const signUpScreen()));
+              },
+              child: const Text("Hesabınız yok mu?",
+                style: TextStyle(
+              color: Color(0xff0E469B)
+              ),
               ),
             ),
           ),

@@ -65,12 +65,12 @@ class navigationPageState extends State<navigationPage> {
          IconButton(onPressed: _handlePressButton,
              icon: const Icon(Icons.search)),
        IconButton(onPressed: () {
-         context.read<AuthenticationService>().signOut();
-         Navigator.push(
-           context,
-           MaterialPageRoute(builder: (context) => AuthenticationWrapper(),
-           ),
-         );
+           context.read<AuthenticationService>().signOut();
+           Navigator.push(
+             context,
+             MaterialPageRoute(builder: (context) => AuthenticationWrapper(),
+             ),
+           );
        },
            icon:const Icon(Icons.logout))
        ],

@@ -95,7 +95,7 @@ class _signUpScreenState extends State<signUpScreen> {
                   backgroundColor: MaterialStateProperty.all<Color>(const Color(0xff0E469B))
               ),
               onPressed: () {
-                FirebaseAuth.instance.createUserWithEmailAndPassword(email: email.text, password: email.text).then((value) {print("Hesabınız Oluşturuldu!");
+                FirebaseAuth.instance.createUserWithEmailAndPassword(email: email.text, password: password.text).then((value) {print("Hesabınız Oluşturuldu!");
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => AuthenticationWrapper()));
                 }).onError((error, stackTrace) {
